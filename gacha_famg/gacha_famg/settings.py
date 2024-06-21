@@ -19,6 +19,7 @@ CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 CREATED_APPS = [
     "db",
     "home",
+    "finance",
 ]
 
 INSTALLED_APPS = [
