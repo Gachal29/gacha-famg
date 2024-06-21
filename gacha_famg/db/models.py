@@ -77,6 +77,16 @@ class Category(models.Model):
         default=0,
         validators=[MaxValueValidator(32767)]
     )
+    text_color = models.CharField(
+        verbose_name="テキストカラー",
+        max_length=7,
+        default="#0D0D0D"
+    )
+    bg_color = models.CharField(
+        verbose_name="背景カラー",
+        max_length=7,
+        default="#DAD5D2"
+    )
 
     def __str__(self):
         return f"{self.home}, {self.name}"

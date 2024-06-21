@@ -11,7 +11,7 @@ def generate_hid():
     return "".join(rand_letters)
 
 def default_year_month():
-    today = datetime.datetime.now()
+    today = datetime.date.today()
     next_month = today + datetime.timedelta(days=31)
     year = next_month.year
     month = next_month.month
