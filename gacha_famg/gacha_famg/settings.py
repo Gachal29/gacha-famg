@@ -18,6 +18,7 @@ CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS")
 
 CREATED_APPS = [
     "db",
+    "home",
 ]
 
 INSTALLED_APPS = [
@@ -37,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'home.middleware.HomeMiddleware',
 ]
 
 ROOT_URLCONF = 'gacha_famg.urls'
