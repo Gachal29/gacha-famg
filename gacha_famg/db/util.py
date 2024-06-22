@@ -1,5 +1,6 @@
 import datetime
 import random, string
+from .validate import validate_year_month_format
 
 
 def generate_hid():
@@ -12,9 +13,8 @@ def generate_hid():
 
 def default_year_month():
     today = datetime.date.today()
-    next_month = today + datetime.timedelta(days=31)
-    year = next_month.year
-    month = next_month.month
+    year = today.year
+    month = today.month
     if month < 10:
         month = f"0{month}"
     return f"{year}_{month}"
@@ -31,3 +31,16 @@ def defualt_year_month_start_date():
         month = f"0{month}"
     date = datetime.datetime.strptime(f"{year_month_split[0]}_{month}_{DEFAULT_START_DAY}", "%Y_%m_%d").date()
     return date
+
+def get_next_year_month(year_month):
+    validate_year_month_format(year_month)
+    year_month_split = year_month.split("_")
+    year = int(year_month_split[0])
+    month = int(year_month_split[1])
+    month += 1
+    if month == 13:
+        month = 1
+        year += 1
+    if month < 10:
+        month = f"0{month}"
+    return f"{year}_{month}"
