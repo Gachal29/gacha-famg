@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load json_filter %}
+
+{% block main %}
+<div class="mb-2 w-full text-center md:text-left">
+  <select
+      name="year_month"
+      class="select select-bordered w-full max-w-xs"
+      onchange="location.href = `{% url 'top' %}?year_month=${this.value}`"
+  >
+    {% for purchase_record_month in purchase_record_months %}
+    <option
+      value="{{ purchase_record_month.year_month }}"
+      {% if purchase_record_month.year_month == request.GET.year_month %}selected disabled{% endif %}
+    >
+      {{ purchase_record_month.year_month_text }}
+    </option>
+    {% endfor %}
+  </select>
+</div>
+
+<div id="app-finance">
+  <finance :controller="controller" />
+</div>
+{% endblock %}
+
+{% block exscripts %}
+<script>
+  window.requestContext = {
+    shops: {{ shops|jsonify }},
+    categories: {{ categories|jsonify }},
+    receipts: {{ receipts|jsonify }},
+    purchase_items: {{ purchase_items|jsonify }},
+  }
+</script>
+{% endblock %}

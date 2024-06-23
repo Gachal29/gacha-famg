@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'client/css/main.css' %}">
+  <title>Gacha FAMg</title>
+</head>
+
+<body>
+  <header class="navbar bg-neutral text-neutral-content sticky top-0 z-50">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl" href="{% url 'top' %}">FAMg</a>
+    </div>
+    {% if request.user.is_authenticated %}
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <details class="menu menu-horizontal px-1">
+            <summary>
+              {{ request.user.username }} ({{ request.home.name}})
+            </summary>
+            <ul class="p-2 bg-neutral text-neutral-content rounded-t-none z-50">
+              <li><a>Link 1</a></li>
+              <li><a>Link 2</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+  </header>
+  <main class="p-2">
+    {% block main %}{% endblock %}
+  </main>
+
+  {% block exscripts %}{% endblock %}
+  <script type="module" src="{% static 'client/js/main.js' %}"></script>
+</body>
+
+</html>

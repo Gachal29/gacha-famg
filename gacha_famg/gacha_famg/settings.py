@@ -20,6 +20,7 @@ CREATED_APPS = [
     "db",
     "home",
     "finance",
+    "util",
 ]
 
 INSTALLED_APPS = [
